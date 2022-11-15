@@ -278,7 +278,8 @@ function mapRethnetExitCodeToEthereumJsExceptionError(
   const ethereumJsError = rethnetExitCodeToEthereumJsError.get(rethnetExitCode);
   if (ethereumJsError === undefined) {
     console.trace(`Couldn't map exit code ${rethnetExitCode}`);
-    process.exit(1);
+    // eslint-disable-next-line @nomiclabs/hardhat-internal-rules/only-hardhat-error
+    throw new Error(`Couldn't map exit code ${rethnetExitCode}`);
   }
 
   return new EvmError(ethereumJsError);
